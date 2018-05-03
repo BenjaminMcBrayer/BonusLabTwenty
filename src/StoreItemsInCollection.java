@@ -1,3 +1,6 @@
+//Benjamin McBrayer, 5.2.2018
+//This Java console program uses collections to store items in a shopping list.
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;

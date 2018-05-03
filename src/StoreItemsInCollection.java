@@ -1,3 +1,4 @@
+
 //Benjamin McBrayer, 5.2.2018
 //This Java console program uses collections to store items in a shopping list.
 
@@ -13,7 +14,6 @@ public class StoreItemsInCollection {
 		final int NUM_COSTS = 20;
 		ArrayList<String> item = new ArrayList<>(NUM_ITEMS);
 		ArrayList<Double> cost = new ArrayList<>(NUM_COSTS);
-		double price;
 		double avgPrice = 0;
 		HashMap<String, Double> products = new HashMap<>();
 		String playAgain = null;
@@ -35,13 +35,8 @@ public class StoreItemsInCollection {
 
 		do {
 			// Display inventory.
-			System.out.printf("%1$-15s %2$-8s", "Item", "Price");
-			System.out.printf("\n%1$-15s %2$-8s", "=======", "=======");
+			displayProducts(products);
 
-			for (String product : products.keySet()) {
-				price = products.get(product);
-				System.out.printf("\n%1$-15s %2$-8s", product, price);
-			}
 			System.out.println();
 			// Get user input.
 			System.out.print("\nWhat item would you like to order? ");
@@ -55,13 +50,14 @@ public class StoreItemsInCollection {
 				cost.add(products.get(userOrder));
 			} else {
 				System.out.println("Sorry, we don't have those. Please try again.");
+				continue;
 			}
 
 			// Prompt user to continue.
 			System.out.print("Would you like to order anything else (y/n)? ");
 			playAgain = scnr.next();
 			System.out.println();
-			
+
 		} while (playAgain.equalsIgnoreCase("y"));
 
 		// Display order.
@@ -74,8 +70,14 @@ public class StoreItemsInCollection {
 		// Calculate average price.
 		System.out.println();
 		System.out.println();
-		averagePrice(cost, avgPrice);
+		getAvgPrice(cost, avgPrice);
 		
+		//Calculate highest and lowest costs.
+		System.out.println();
+		System.out.printf("The index of the most expensive item was %.2f", getHighestCost(cost));
+		System.out.println();
+		System.out.printf("The index of the least expensive item was %.2f", getLowestCost(cost));
+
 		System.out.println();
 		System.out.println("\nHave a wonderful day!");
 
@@ -88,12 +90,41 @@ public class StoreItemsInCollection {
 		return "Hello, " + userName + "!";
 	}
 
-	public static void averagePrice(ArrayList<Double> prices, double avgPrice) {
+	public static void getAvgPrice(ArrayList<Double> costs, double avgPrice) {
 		avgPrice = 0;
-		for (int i = 0; i < prices.size(); ++i) {
-			avgPrice += prices.get(i) / prices.size(); 
+		for (int i = 0; i < costs.size(); ++i) {
+			avgPrice += costs.get(i) / costs.size();
 		}
 		System.out.printf("Average price per item in order was %.2f", avgPrice);
 	}
 
+	public static void displayProducts(HashMap<String, Double> products) {
+		System.out.printf("%1$-15s %2$-8s", "Item", "Price");
+		System.out.printf("\n%1$-15s %2$-8s", "=======", "=======");
+
+		for (String product : products.keySet()) {
+			double price = products.get(product);
+			System.out.printf("\n%1$-15s %2$-8s", product, price);
+		}
+	}
+	// Method for indices of the highest and lowest cost items.
+	public static double getHighestCost(ArrayList<Double> costs) {
+		double highestCost = 0;
+		for (double cost : costs) {
+			if (cost > highestCost) {
+				highestCost = cost;
+			}
+		}
+		return highestCost;
+	}
+
+	public static double getLowestCost(ArrayList<Double> costs) {
+		double lowestCost = Double.MAX_VALUE;
+		for (double cost : costs) {
+			if (cost < lowestCost) {
+				lowestCost = cost;
+			}
+		}
+		return lowestCost;
+	}
 }

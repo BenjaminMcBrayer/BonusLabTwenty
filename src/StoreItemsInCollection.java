@@ -90,10 +90,10 @@ public class StoreItemsInCollection {
 		return "Hello, " + userName + "!";
 	}
 
-	public static void getAvgPrice(ArrayList<Double> costs, double avgPrice) {
+	public static void getAvgPrice(ArrayList<Double> cost, double avgPrice) {
 		avgPrice = 0;
-		for (int i = 0; i < costs.size(); ++i) {
-			avgPrice += costs.get(i) / costs.size();
+		for (int i = 0; i < cost.size(); ++i) {
+			avgPrice += cost.get(i) / cost.size();
 		}
 		System.out.printf("Average price per item in order was %.2f", avgPrice);
 	}

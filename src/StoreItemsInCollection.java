@@ -58,7 +58,7 @@ public class StoreItemsInCollection {
 		} while (playAgain.equalsIgnoreCase("y"));
 
 		// Display order.
-		System.out.println("Thanks for your order!");
+		System.out.println("\nThanks for your order!");
 		System.out.println("Here's what you got: ");
 		for (int i = 0; i < item.size(); ++i) {
 			System.out.printf("\n%1$-15s %2$-8s", item.get(i), cost.get(i));
@@ -99,7 +99,7 @@ public class StoreItemsInCollection {
 		}
 	}
 
-	// Method for indices of the highest and lowest cost items.
+	// Methods for indices of the highest and lowest cost items.
 	public static double getHighestCost(ArrayList<Double> costs) {
 		double highestCost = 0;
 		for (double cost : costs) {

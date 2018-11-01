@@ -37,7 +37,6 @@ public class StoreItemsInCollection {
 			// Display inventory.
 			displayProducts(products);
 
-			System.out.println();
 			// Get user input.
 			System.out.print("\nWhat item would you like to order? ");
 			String userOrder = scnr.next();
@@ -52,11 +51,9 @@ public class StoreItemsInCollection {
 				System.out.println("Sorry, we don't have those. Please try again.");
 				continue;
 			}
-
 			// Prompt user to continue.
 			System.out.print("Would you like to order anything else (y/n)? ");
 			playAgain = scnr.next();
-			System.out.println();
 
 		} while (playAgain.equalsIgnoreCase("y"));
 
@@ -68,18 +65,12 @@ public class StoreItemsInCollection {
 		}
 
 		// Calculate average price.
-		System.out.println();
-		System.out.println();
 		getAvgPrice(cost, avgPrice);
-		
-		//Calculate highest and lowest costs.
-		System.out.println();
-		System.out.printf("The index of the most expensive item was %.2f", getHighestCost(cost));
-		System.out.println();
-		System.out.printf("The index of the least expensive item was %.2f", getLowestCost(cost));
 
-		System.out.println();
-		System.out.println("\nHave a wonderful day!");
+		// Calculate highest and lowest costs.
+		System.out.printf("\nThe index of the most expensive item was %.2f", getHighestCost(cost));
+		System.out.printf("\nThe index of the least expensive item was %.2f", getLowestCost(cost));
+		System.out.println("\n\nHave a wonderful day!");
 
 		scnr.close();
 	}
@@ -95,7 +86,7 @@ public class StoreItemsInCollection {
 		for (int i = 0; i < cost.size(); ++i) {
 			avgPrice += cost.get(i) / cost.size();
 		}
-		System.out.printf("Average price per item in order was %.2f", avgPrice);
+		System.out.printf("\n\nAverage price per item in order was %.2f", avgPrice);
 	}
 
 	public static void displayProducts(HashMap<String, Double> products) {
@@ -107,6 +98,7 @@ public class StoreItemsInCollection {
 			System.out.printf("\n%1$-15s %2$-8s", product, price);
 		}
 	}
+
 	// Method for indices of the highest and lowest cost items.
 	public static double getHighestCost(ArrayList<Double> costs) {
 		double highestCost = 0;
